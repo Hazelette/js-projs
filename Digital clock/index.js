@@ -1,0 +1,3 @@
+// DIGITAL CLOCK
+
+function updateClock(){}
