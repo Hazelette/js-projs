@@ -35,4 +35,25 @@ body{
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
+    transition: background-color 0.5s;
+}
+#startBtn{
+    background-color: hsl(120, 92%, 50%);
+}
+#startBtn:hover{
+    background-color: hsl(120, 92%, 40%);
+}
+
+#stopBtn{
+    background-color:hsl(0, 97%, 45%);
+}
+#stopBtn:hover{
+    background-color: hsl(0, 97%, 35%);
+}
+#resetBtn{
+    background-color: hsl(246, 94%, 50%);
+}
+#resetBtn:hover{
+    background-color: hsl(246, 94%, 40%);
 }
