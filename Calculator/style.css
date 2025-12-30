@@ -1,3 +1,12 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /*centering calculator on screen*/
+    background-color: hsl(0, 0%, 95%);
+}
+
 #calculator{
     font-family: Arial, sans-serif;
     background-color: hsl(0, 0%, 15%);
@@ -5,7 +14,16 @@
     max-width: 500px;
     overflow: hidden; /* for overlfowing calculation on display */
 }
+#display{
+    width: 100%;
+    padding: 20px;
+    font-size: 5rem;
+    text-align: left;
+    background-color: hsl(0, 0%, 20%);
+    border: none;
 
+
+}
 #keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 to have operations on 1st column */
@@ -24,4 +42,11 @@ button{
     font-weight: bold;
     cursor: pointer;
 
+}
+
+button:hover{
+    background-color: hsl(0, 0%, 40%);
+}
+button:active{
+    background-color: hsl(0, 0%, 50%);
 }
