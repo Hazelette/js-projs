@@ -7,14 +7,18 @@ type DigitalClockProps = {
 
 function DigitalClock({ label, timeZone }: DigitalClockProps) {
   const [time, setTime] = useState(new Date());
+  const [tick, setTick] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTime(new Date());
+      setTick(true);
     }, 1000); // callback, time
 
     // when we unmount, clear interval to free resources
     return () => {
+      if (!tick) return;
+      const timeout = setTimeout(() => setTick(false), 150);
       clearInterval(intervalId);
     };
   }, []); // start timer only when we mount, not render so []
@@ -39,7 +43,7 @@ function DigitalClock({ label, timeZone }: DigitalClockProps) {
     <>
       <div className="clock-container">
         <div className="clock-label">{label}</div>
-        <div className="clock">
+        <div className={`clock ${tick ? "clock-tick" : ""}`}>
           <span>{formatTime()}</span>
         </div>
       </div>

@@ -38,6 +38,7 @@ body{
   font-family: monospace;
   text-align: center;
   text-shadow: 3px 3px 5px hsla(0, 0%, 0%, 0.75);
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 .clock-label{
   font-size: 2rem;
@@ -58,4 +59,8 @@ body{
   padding: 24px;
   flex-wrap: wrap; /* allows wrap on small screens */
   width: 100%;
+}
+.clock-tick {
+  transform: scale(1.03);
+  opacity: 0.95;
 }
