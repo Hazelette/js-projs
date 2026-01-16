@@ -43,3 +43,14 @@ body{
   font-weight: bold;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
+
+.clock-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+
+  /* optional */
+  padding: 24px;
+  flex-wrap: wrap; /* allows wrap on small screens */
+}
