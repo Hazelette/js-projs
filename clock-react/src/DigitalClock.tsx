@@ -17,11 +17,15 @@ function DigitalClock({ label, timeZone }: DigitalClockProps) {
 
     // when we unmount, clear interval to free resources
     return () => {
-      if (!tick) return;
-      const timeout = setTimeout(() => setTick(false), 150);
       clearInterval(intervalId);
     };
   }, []); // start timer only when we mount, not render so []
+
+  useEffect(() => {
+    if (!tick) return;
+    const timeout = setTimeout(() => setTick(false), 150);
+    return () => clearTimeout(timeout);
+  }, [tick]);
 
   const formatter = useMemo(
     () =>
