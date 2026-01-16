@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-function DigitalClock() {
+type DigitalClockProps = {
+  label: string;
+  timeZone: string;
+};
+
+function DigitalClock({ label, timeZone = "Asia/Kuala_Lumpur" }) {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -15,20 +20,13 @@ function DigitalClock() {
   }, []); // start timer only when we mount, not render so []
 
   function formatTime() {
-    let hours = time.getHours();
-    const minutes = time.getMinutes();
-    const seconds = time.getSeconds();
-    const meridiem = hours >= 12 ? "PM" : "AM";
-
-    hours = hours % 12 || 12;
-
-    return `${padZero(hours)}:${padZero(minutes)}:${padZero(
-      seconds
-    )} ${meridiem}`;
-  }
-
-  function padZero(number) {
-    return (number < 10 ? "0" : "") + number;
+    return new Intl.DateTimeFormat(undefined, {
+      timeZone,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).format(time);
   }
 
   return (

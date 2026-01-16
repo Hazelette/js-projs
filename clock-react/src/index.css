@@ -19,7 +19,7 @@ body{
 .clock{
   color: white;
   font-weight: bold;
-  font-size: 6rem;
+  font-size: 4rem;
   font-family: monospace;
   text-align: center;
   text-shadow: 3px 3px 5px hsla(0, 0%, 0%, 0.75);
