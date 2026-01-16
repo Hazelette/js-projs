@@ -39,6 +39,10 @@ body{
   text-align: center;
   text-shadow: 3px 3px 5px hsla(0, 0%, 0%, 0.75);
   transition: transform 0.15s ease, opacity 0.15s ease;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
 }
 .clock-label{
   font-size: 2rem;
@@ -63,4 +67,15 @@ body{
 .clock-tick {
   transform: scale(1.03);
   opacity: 0.95;
+}
+
+.clock-time {
+  font-size: 4rem;
+}
+
+.clock-ampm {
+  font-size: 1.6rem;
+  opacity: 0.7;
+  transform: translateY(6px);
+  letter-spacing: 0.05em;
 }

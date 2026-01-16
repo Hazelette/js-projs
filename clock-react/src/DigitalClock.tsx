@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 type DigitalClockProps = {
   label: string;
@@ -13,13 +13,10 @@ function DigitalClock({ label, timeZone }: DigitalClockProps) {
     const intervalId = setInterval(() => {
       setTime(new Date());
       setTick(true);
-    }, 1000); // callback, time
+    }, 1000);
 
-    // when we unmount, clear interval to free resources
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []); // start timer only when we mount, not render so []
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     if (!tick) return;
@@ -27,31 +24,36 @@ function DigitalClock({ label, timeZone }: DigitalClockProps) {
     return () => clearTimeout(timeout);
   }, [tick]);
 
-  const formatter = useMemo(
-    () =>
-      new Intl.DateTimeFormat(undefined, {
-        timeZone,
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      }),
-    [timeZone]
-  );
+  function getTimeParts() {
+    const parts = new Intl.DateTimeFormat(undefined, {
+      timeZone,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }).formatToParts(time);
 
-  function formatTime() {
-    return formatter.format(time);
+    const timePart = parts
+      .filter((p) => p.type !== "dayPeriod")
+      .map((p) => p.value)
+      .join("");
+
+    const dayPeriod = parts.find((p) => p.type === "dayPeriod")?.value;
+
+    return { timePart, dayPeriod };
   }
 
+  const { timePart, dayPeriod } = getTimeParts();
+
   return (
-    <>
-      <div className="clock-container">
-        <div className="clock-label">{label}</div>
-        <div className={`clock ${tick ? "clock-tick" : ""}`}>
-          <span>{formatTime()}</span>
-        </div>
+    <div className="clock-container">
+      <div className="clock-label">{label}</div>
+
+      <div className={`clock ${tick ? "clock-tick" : ""}`}>
+        <span className="clock-time">{timePart}</span>
+        <span className="clock-ampm">{dayPeriod}</span>
       </div>
-    </>
+    </div>
   );
 }
 
