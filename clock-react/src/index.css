@@ -12,9 +12,18 @@ body{
   align-items: center;
 }
 .clock-container{
-  backdrop-filter: blur(5px);
-  width: 100vw;
-  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 16px;
+  padding: 18px 28px;
+  margin: 20px auto;
+  width: fit-content;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 .clock{
   color: white;
